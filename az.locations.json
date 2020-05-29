@@ -1,0 +1,256 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "2020.5.29.0",
+    "apiProfile": "2018-06-01-profile",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue": "[deployment().location]",
+            "allowedValues": [
+                "australiacentral",
+                "australiacentral2",
+                "australiaeast",
+                "australiasoutheast",
+                "brazilsouth",
+                "canadacentral",
+                "canadaeast",
+                "centralindia",
+                "centralus",
+                "eastasia",
+                "eastus",
+                "eastus2",
+                "francecentral",
+                "francesouth",
+                "germanynorth",
+                "germanywestcentral",
+                "japaneast",
+                "japanwest",
+                "koreacentral",
+                "koreasouth",
+                "northcentralus",
+                "northeurope",
+                "norwayeast",
+                "norwaywest",
+                "southafricanorth",
+                "southafricawest",
+                "southcentralus",
+                "southeastasia",
+                "southindia",
+                "switzerlandnorth",
+                "switzerlandwest",
+                "uaecentral",
+                "uaenorth",
+                "uksouth",
+                "ukwest",
+                "westcentralus",
+                "westeurope",
+                "westindia",
+                "westus",
+                "westus2"
+            ],
+            "metadata": {
+                "description": "Location to use for the deployment."
+            }
+        }
+    },
+    "variables": {
+        "location": "[parameters('location')]",
+        "deploymentId": "[parameters('deploymentId')]",
+        "deploymentLocation": "[deployment().location]",
+        "location2digit": "[global.get_location_2_digits(variables('location'))]",
+        "location4chars": "[global.get_location_4_chars(variables('location'))]",
+        "location6chars": "[global.get_location_6_chars(variables('location'))]"
+    },
+    "functions": [
+        {
+            "namespace": "global",
+            "members": {
+                "get_location_2_digits": {
+                    "parameters": [
+                        {
+                            "name": "location",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "type": "string",
+                        "value": "[
+                            if(equals(parameters('location'), 'eastasia'), '01',
+                            if(equals(parameters('location'), 'southeastasia'), '02', 
+                            if(equals(parameters('location'), 'centralus'), '03',     
+                            if(equals(parameters('location'), 'eastus'), '04',        
+                            if(equals(parameters('location'), 'eastus2'), '05',       
+                            if(equals(parameters('location'), 'westus'), '06',        
+                            if(equals(parameters('location'), 'northcentralus'), '07',
+                            if(equals(parameters('location'), 'southcentralus'), '08',
+                            if(equals(parameters('location'), 'northeurope'), '09',        
+                            if(equals(parameters('location'), 'westeurope'), '10',        
+                            if(equals(parameters('location'), 'japanwest'), '11',
+                            if(equals(parameters('location'), 'japaneast'), '12',
+                            if(equals(parameters('location'), 'brazilsouth'), '13',       
+                            if(equals(parameters('location'), 'australiaeast'), '14',     
+                            if(equals(parameters('location'), 'australiasoutheast'), '15',
+                            if(equals(parameters('location'), 'southindia'), '16',        
+                            if(equals(parameters('location'), 'centralindia'), '17', 
+                            if(equals(parameters('location'), 'westindia'), '18',    
+                            if(equals(parameters('location'), 'canadacentral'), '19',
+                            if(equals(parameters('location'), 'canadaeast'), '20',   
+                            if(equals(parameters('location'), 'uksouth'), '21',      
+                            if(equals(parameters('location'), 'ukwest'), '22',       
+                            if(equals(parameters('location'), 'westcentralus'), '23',
+                            if(equals(parameters('location'), 'westus2'), '24',
+                            if(equals(parameters('location'), 'koreacentral'), '25',
+                            if(equals(parameters('location'), 'koreasouth'), '26',
+                            if(equals(parameters('location'), 'francecentral'), '27',
+                            if(equals(parameters('location'), 'francesouth'), '28',
+                            if(equals(parameters('location'), 'australiacentral'), '29',
+                            if(equals(parameters('location'), 'australiacentral2'), '30',
+                            if(equals(parameters('location'), 'uaecentral'), '31',
+                            if(equals(parameters('location'), 'uaenorth'), '32',
+                            if(equals(parameters('location'), 'southafricanorth'), '33',
+                            if(equals(parameters('location'), 'southafricawest'), '34',
+                            if(equals(parameters('location'), 'switzerlandnorth'), '35',
+                            if(equals(parameters('location'), 'switzerlandwest'), '36',
+                            if(equals(parameters('location'), 'germanynorth'), '37',
+                            if(equals(parameters('location'), 'germanywestcentral'), '38',
+                            if(equals(parameters('location'), 'norwaywest'), '39',
+                            if(equals(parameters('location'), 'norwayeast'), '40',
+                            'unknown'))))))))))))))))))))))))))))))))))))))))
+                        ]"
+                    }
+                },
+                "get_location_4_chars": {
+                    "parameters": [
+                        {
+                            "name": "location",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "type": "string",
+                        "value": "[
+                            if(equals(parameters('location'), 'australiacentral'), 'auc1',
+                            if(equals(parameters('location'), 'australiacentral2'), 'auc2',
+                            if(equals(parameters('location'), 'australiaeast'), 'aue1',
+                            if(equals(parameters('location'), 'australiasoutheast'), 'ause',
+                            if(equals(parameters('location'), 'brazilsouth'), 'brs1',
+                            if(equals(parameters('location'), 'canadacentral'), 'cac1',
+                            if(equals(parameters('location'), 'canadaeast'), 'cae1',
+                            if(equals(parameters('location'), 'centralindia'), 'inc1',
+                            if(equals(parameters('location'), 'centralus'), 'usc1',
+                            if(equals(parameters('location'), 'eastasia'), 'hke1',
+                            if(equals(parameters('location'), 'eastus'), 'use1',
+                            if(equals(parameters('location'), 'eastus2'), 'use2',
+                            if(equals(parameters('location'), 'francecentral'), 'frc1',
+                            if(equals(parameters('location'), 'francesouth'), 'frs1',
+                            if(equals(parameters('location'), 'germanynorth'), 'den1',
+                            if(equals(parameters('location'), 'germanywestcentral'), 'dewc',
+                            if(equals(parameters('location'), 'japaneast'), 'jpe1',
+                            if(equals(parameters('location'), 'japanwest'), 'jpw1',
+                            if(equals(parameters('location'), 'koreacentral'), 'kpc1',
+                            if(equals(parameters('location'), 'koreasouth'), 'kps1',
+                            if(equals(parameters('location'), 'northcentralus'), 'usnc',
+                            if(equals(parameters('location'), 'northeurope'), 'ien1',
+                            if(equals(parameters('location'), 'norwayeast'), 'noe1',
+                            if(equals(parameters('location'), 'norwaywest'), 'noe2',
+                            if(equals(parameters('location'), 'southafricanorth'), 'zan1',
+                            if(equals(parameters('location'), 'southafricawest'), 'zaw1',
+                            if(equals(parameters('location'), 'southcentralus'), 'ussc',
+                            if(equals(parameters('location'), 'southeastasia'), 'sgse',
+                            if(equals(parameters('location'), 'southindia'), 'ins1',
+                            if(equals(parameters('location'), 'switzerlandnorth'), 'chn1',
+                            if(equals(parameters('location'), 'switzerlandwest'), 'chw1',
+                            if(equals(parameters('location'), 'uaecentral'), 'aec1',
+                            if(equals(parameters('location'), 'uaenorth'), 'aen1',
+                            if(equals(parameters('location'), 'uksouth'), 'gbs1',
+                            if(equals(parameters('location'), 'ukwest'), 'gbw1',
+                            if(equals(parameters('location'), 'westcentralus'), 'uswc',
+                            if(equals(parameters('location'), 'westeurope'), 'nlw1',
+                            if(equals(parameters('location'), 'westindia'), 'inw1',
+                            if(equals(parameters('location'), 'westus'), 'usw1',
+                            if(equals(parameters('location'), 'westus2'), 'usw2',
+                            'unknown'))))))))))))))))))))))))))))))))))))))))
+                        ]"
+                    }
+                },
+                "get_location_6_chars": {
+                    "parameters": [
+                        {
+                            "name": "location",
+                            "type": "string"
+                        }
+                    ],
+                    "output": {
+                        "type": "string",
+                        "value": "[
+                            if(equals(parameters('location'), 'australiacentral'), 'auscen',
+                            if(equals(parameters('location'), 'australiacentral2'), 'ausce2',
+                            if(equals(parameters('location'), 'australiaeast'), 'auseas',
+                            if(equals(parameters('location'), 'australiasoutheast'), 'aussea',
+                            if(equals(parameters('location'), 'brazilsouth'), 'brasou',
+                            if(equals(parameters('location'), 'canadacentral'), 'cancen',
+                            if(equals(parameters('location'), 'canadaeast'), 'caneas',
+                            if(equals(parameters('location'), 'centralindia'), 'cenind',
+                            if(equals(parameters('location'), 'centralus'), 'centus',
+                            if(equals(parameters('location'), 'eastasia'), 'easasi',
+                            if(equals(parameters('location'), 'eastus'), 'eastus',
+                            if(equals(parameters('location'), 'eastus2'), 'easus2',
+                            if(equals(parameters('location'), 'francecentral'), 'fracen',
+                            if(equals(parameters('location'), 'francesouth'), 'frasou',
+                            if(equals(parameters('location'), 'germanynorth'), 'gernor',
+                            if(equals(parameters('location'), 'germanywestcentral'), 'gerwce',
+                            if(equals(parameters('location'), 'japaneast'), 'japeas',
+                            if(equals(parameters('location'), 'japanwest'), 'japwes',
+                            if(equals(parameters('location'), 'koreacentral'), 'korcen',
+                            if(equals(parameters('location'), 'koreasouth'), 'korsou',
+                            if(equals(parameters('location'), 'northcentralus'), 'noceus',
+                            if(equals(parameters('location'), 'northeurope'), 'noreur',
+                            if(equals(parameters('location'), 'norwayeast'), 'noreas',
+                            if(equals(parameters('location'), 'norwaywest'), 'norwes',
+                            if(equals(parameters('location'), 'southafricanorth'), 'soafno',
+                            if(equals(parameters('location'), 'southafricawest'), 'soafwe',
+                            if(equals(parameters('location'), 'southcentralus'), 'soceus',
+                            if(equals(parameters('location'), 'southeastasia'), 'soeaas',
+                            if(equals(parameters('location'), 'southindia'), 'souind',
+                            if(equals(parameters('location'), 'switzerlandnorth'), 'swinor',
+                            if(equals(parameters('location'), 'switzerlandwest'), 'swiwes',
+                            if(equals(parameters('location'), 'uaecentral'), 'uaecen',
+                            if(equals(parameters('location'), 'uaenorth'), 'uaenor',
+                            if(equals(parameters('location'), 'uksouth'), 'uksout',
+                            if(equals(parameters('location'), 'ukwest'), 'ukwest',
+                            if(equals(parameters('location'), 'westcentralus'), 'weceus',
+                            if(equals(parameters('location'), 'westeurope'), 'weseur',
+                            if(equals(parameters('location'), 'westindia'), 'wesind',
+                            if(equals(parameters('location'), 'westus'), 'westus',
+                            if(equals(parameters('location'), 'westus2'), 'wesus2',
+                            'unknown'))))))))))))))))))))))))))))))))))))))))
+                        ]"
+                    }
+                }
+            }
+        }
+    ],
+    "resources": [ ],
+    "outputs": {
+        "deploymentLocation": {
+            "type": "string",
+            "value": "[variables('deploymentLocation')]"
+        },
+        "location": {
+            "type": "string",
+            "value": "[variables('location')]"
+        },
+        "location2digit": {
+            "type": "string",
+            "value": "[variables('location2digit')]"
+        },
+        "location4chars": {
+            "type": "string",
+            "value": "[variables('location4chars')]"
+        },
+        "location6chars": {
+            "type": "string",
+            "value": "[variables('location6chars')]"
+        }
+    }
+}
