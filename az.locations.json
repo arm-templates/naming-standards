@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "2020.5.29.0",
+    "contentVersion": "2020.5.30.0",
     "apiProfile": "2018-06-01-profile",
     "parameters": {
         "location": {
@@ -55,7 +55,6 @@
     },
     "variables": {
         "location": "[parameters('location')]",
-        "deploymentId": "[parameters('deploymentId')]",
         "deploymentLocation": "[deployment().location]",
         "location2digit": "[global.get_location_2_digits(variables('location'))]",
         "location4chars": "[global.get_location_4_chars(variables('location'))]",
